@@ -9,61 +9,97 @@ global sourceAddr := "C:\Users\" . A_UserName . "\AppData\LocalLow\Nolla_Games_N
 global destAddr := ".\slot"
 global progName := "NoitaSL"
 
++Escape::
+Run, .\
+return
+
 #IfWinExist, ahk_exe noita.exe
 +F1::
-Alert()
+WinClose
+WinWaitClose
+SaveState(1)
 return
 F1::
-Alert()
+WinClose
+WinWaitClose
+LoadState(1)
 return
 
 +F2::
-Alert()
+WinClose
+WinWaitClose
+SaveState(2)
 return
 F2::
-Alert()
+WinClose
+WinWaitClose
+LoadState(2)
 return
 
 +F3::
-Alert()
+WinClose
+WinWaitClose
+SaveState(3)
 return
 F3::
-Alert()
+WinClose
+WinWaitClose
+LoadState(3)
 return
 
 +F4::
-Alert()
+SaveState(4)
+WinClose
+WinWaitClose
 return
 F4::
-Alert()
+WinClose
+WinWaitClose
+LoadState(4)
 return
 
 +F5::
-Alert()
+WinClose
+WinWaitClose
+SaveState(5)
 return
 F5::
-Alert()
+WinClose
+WinWaitClose
+LoadState(5)
 return
 
 +F6::
-Alert()
+WinClose
+WinWaitClose
+SaveState(6)
 return
 F6::
-Alert()
+WinClose
+WinWaitClose
+LoadState(6)
 return
 
 +F7::
-Alert()
+WinClose
+WinWaitClose
+SaveState(7)
 return
 F7::
-Alert()
+WinClose
+WinWaitClose
+LoadState(7)
 return
 
 +F8::
-Alert()
+WinClose
+WinWaitClose
+SaveState(8)
 return
 F8::
-Alert()
+WinClose
+WinWaitClose
+LoadState(8)
 return
 
 ;-----------------------------------------------------------------
@@ -129,9 +165,10 @@ SaveState(slotNum) {
 	destAddr := ".\slot"
 	destAddr := destAddr . slotNum
 
-	FileRemoveDir, destAddr, 1
+	FileRemoveDir, %destAddr%, 1
 	FileCopyDir, %sourceAddr%, %destAddr%
 	MsgBox, 0x1000, %progName%, Saved State to Slot %slotNum%, 1
+	Run, steam://rungameid/881100
 }
 
 LoadState(slotNum) {
@@ -145,8 +182,5 @@ LoadState(slotNum) {
 	FileRemoveDir, %sourceAddr%, 1
 	FileCopyDir, %destAddr%, %sourceAddr%
 	MsgBox, 0x1000, %progName%, Loaded State from Slot %slotNum%, 1
-}
-
-Alert() {
-	MsgBox, 0x1030, %progName%, I recommand that you SAVE & QUIT Noita, otherwise there may be some problems
+	Run, steam://rungameid/881100
 }
